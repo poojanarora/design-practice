@@ -47,5 +47,12 @@ const data = [
     last_message: 'Good Morning, did you sleep well?',
     time: 'Today',
   },
+  {
+    id: 9,
+    name: 'Athalia Putri',
+    last_message: 'Good Morning, did you sleep well?',
+    time: 'Today',
+  },
+  
 ];
 export default data;

@@ -1,26 +1,25 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
 
 import {Plus, Profit, Project, Sales, Save} from '../assets/icons/svgs';
 import {APP_LOGO} from '../assets/images';
-import PieChartExample from '../assets/components/PieChart';
+import SimplePieChart from '../assets/components/PieChart';
 
-const HomeScreen = () => {
+const ProjectScreen = () => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <Image source={APP_LOGO} style={styles.logo} />
         <Plus style={styles.plus} />
       </View>
-      <View
-        style={{
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexDirection: 'row',
-          paddingVertical: 60,
-          paddingHorizontal: 20,
-        }}>
+      <View style={styles.chipContainer}>
         <View style={styles.labelChip}>
           <Text style={styles.labelText}>Weekly</Text>
         </View>
@@ -32,13 +31,7 @@ const HomeScreen = () => {
         </View>
       </View>
       <ScrollView>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 265,
-            paddingHorizontal: 30,
-          }}>
+        <View style={styles.boxContainer}>
           <View style={styles.salesBox}>
             <Sales style={styles.icon} />
             <Text style={styles.innerLabelText}>Total Sales</Text>
@@ -50,13 +43,7 @@ const HomeScreen = () => {
             <Text style={styles.percentText}> $1,553</Text>
           </View>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 20,
-            paddingHorizontal: 30,
-          }}>
+        <View style={styles.secondBoxContainer}>
           <View style={styles.saveBox}>
             <Save style={styles.icon} />
             <Text style={styles.innerLabelText}>Average Saves</Text>
@@ -73,7 +60,7 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default ProjectScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -81,8 +68,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 40,
-    marginLeft: 24,
+    marginVertical: 20,
+    marginHorizontal: 24,
   },
   logo: {
     height: 32,
@@ -91,25 +78,44 @@ const styles = StyleSheet.create({
   plus: {
     height: 24,
     width: 24,
-    right: 24,
+  },
+  chipContainer: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingVertical: 40,
+    marginHorizontal: 30,
   },
   labelChip: {
-    backgroundColor: 'green', 
-    padding: 12,
-    margin: 5,
-    borderRadius: 20,
+    backgroundColor: '#10B78B',
+    borderRadius: 17,
+    width: 82,
+    height: 34,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   chip: {
-    padding: 12,
-    margin: 5,
     borderRadius: 20,
   },
   text: {
-    color: 'grey', 
+    color: '#BCBCBC',
     fontWeight: 'bold',
   },
   labelText: {
     color: 'white',
+    fontFamily: 'Mulish-Regular',
+  },
+  boxContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 265,
+    paddingHorizontal: 30,
+  },
+  secondBoxContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    paddingHorizontal: 30,
   },
   box: {
     width: 154,
@@ -152,13 +158,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: 'black',
     marginTop: 10,
-    left: 24,
+    marginLeft: 24,
   },
   icon: {
     height: 34,
     width: 34,
     marginTop: 10,
-    left: 24,
+    marginLeft: 24,
   },
   percentText: {
     fontWeight: 'bold',

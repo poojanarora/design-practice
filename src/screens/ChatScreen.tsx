@@ -9,6 +9,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
+
 import {Back, Forward} from '../assets/icons/svgs';
 import ParticpantsData from './Particpantdata';
 
@@ -32,8 +33,7 @@ const ChatScreen = () => {
   };
   return (
     <ScrollView>
-      <SafeAreaView
-        style={{flex: 1, flexDirection: 'column', backgroundColor: '#F2F7FB'}}>
+      <SafeAreaView style={styles.firstContainer}>
         <Pressable>
           <Back height={24} width={24} style={styles.arrow} />
         </Pressable>
@@ -45,7 +45,7 @@ const ChatScreen = () => {
           <View style={styles.round}>
             <Text style={styles.innerroundText}> UK </Text>
           </View>
-          <View style={{marginLeft: 20, width: '57%'}}>
+          <View style={{width: '57%'}}>
             <Text style={styles.itemName}>kitchen architecture project </Text>
             <Text style={styles.subItemName}>(Bathroom)</Text>
             <Text style={styles.itemLastMessage}>
@@ -57,18 +57,13 @@ const ChatScreen = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.container}>
+        <View style={styles.secondContainer}>
           <View style={styles.header}>
             <Text style={styles.labels}> Media, Links and Docs </Text>
             <Forward style={styles.forwardarrow} />
           </View>
           <Text style={styles.labels}> Participants </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginTop: 20,
-            }}>
+          <View style={styles.supportContainer}>
             <View style={styles.otherRound}>
               <Text style={styles.innerText}> UK </Text>
             </View>
@@ -76,7 +71,6 @@ const ChatScreen = () => {
               <Text style={styles.particpantName}>Wevisu Support </Text>
             </View>
           </View>
-
           <View style={styles.list}>
             <FlatList
               scrollEnabled={false}
@@ -96,6 +90,11 @@ const ChatScreen = () => {
 export default ChatScreen;
 
 const styles = StyleSheet.create({
+  firstContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#F2F7FB',
+  },
   round: {
     height: 86,
     width: 86,
@@ -103,9 +102,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 24,
+    marginHorizontal: 24,
   },
   innerText: {
+    fontFamily: 'Mulish-Regular',
+    fontWeight: '700',
     position: 'absolute',
     alignSelf: 'center',
     color: 'white',
@@ -116,14 +117,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'white',
     fontSize: 20,
+    fontFamily: 'Mulish-Regular',
+    fontWeight: '700',
   },
   list: {
     marginTop: 15,
     marginHorizontal: 20,
   },
   arrow: {
-    marginLeft: 24,
-    marginTop: 30,
+    marginHorizontal: 24,
+    marginVertical: 10,
     color: 'black',
   },
   forwardarrow: {
@@ -137,34 +140,41 @@ const styles = StyleSheet.create({
   },
   particpantName: {
     fontSize: 14,
+    fontFamily: 'Mulish-Regular',
   },
   labels: {
     fontSize: 14,
     color: '#000E08',
     marginLeft: 24,
     marginTop: 30,
+    fontFamily: 'Mulish-Regular',
+    fontWeight: '700',
   },
 
   subItemName: {
     fontSize: 12,
     color: 'blue',
     marginTop: 5,
+    fontFamily: 'Mulish-Regular',
   },
   itemLastMessage: {
     fontSize: 12,
     color: '#111',
     marginTop: 10,
     opacity: 0.6,
+    fontFamily: 'Mulish-Regular',
   },
   particpantMail: {
     fontSize: 12,
     color: '#111',
     marginTop: 8,
     opacity: 0.6,
+    fontFamily: 'Mulish-Regular',
   },
   batteryPercent: {
     fontSize: 12,
     color: 'green',
+    fontFamily: 'Mulish-Regular',
   },
   participantRound: {
     height: 49.1,
@@ -174,6 +184,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 15,
+  },
+  supportContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20,
   },
   otherRound: {
     height: 49.1,
@@ -197,15 +212,17 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 16,
+    fontFamily: 'Mulish-Regular',
+    fontWeight: '700',
   },
-  container: {
+  secondContainer: {
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: 'white',
     marginTop: 50,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     overflow: 'hidden',
-    height: '100%',
   },
   header: {
     flexDirection: 'row',
