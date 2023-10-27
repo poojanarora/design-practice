@@ -7,6 +7,7 @@ import {
   TextInput,
   FlatList,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 
 import {APP_LOGO} from '../assets/images';
@@ -35,7 +36,16 @@ const DashboardScreen = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: '#FFFFFF',
+      }}>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="#FFFFFF"
+        networkActivityIndicatorVisible={true}
+      />
       <View style={styles.row}>
         <Text style={styles.text}>Chat</Text>
         <Image source={APP_LOGO} style={styles.logo} />

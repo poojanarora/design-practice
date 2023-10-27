@@ -10,27 +10,29 @@ import {
 
 import {Plus, Profit, Project, Sales, Save} from '../assets/icons/svgs';
 import {APP_LOGO} from '../assets/images';
-import SimplePieChart from '../assets/components/PieChart';
-
+import RNChart from '../assets/components/PieChart';
 const ProjectScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#FFFFFF'}}>
       <View style={styles.container}>
         <Image source={APP_LOGO} style={styles.logo} />
         <Plus style={styles.plus} />
       </View>
-      <View style={styles.chipContainer}>
-        <View style={styles.labelChip}>
-          <Text style={styles.labelText}>Weekly</Text>
-        </View>
-        <View style={styles.chip}>
-          <Text style={styles.text}>Monthly</Text>
-        </View>
-        <View style={styles.chip}>
-          <Text style={styles.text}>Yearly</Text>
-        </View>
-      </View>
       <ScrollView>
+        <View style={styles.chipContainer}>
+          <View style={styles.labelChip}>
+            <Text style={styles.labelText}>Weekly</Text>
+          </View>
+          <View style={styles.chip}>
+            <Text style={styles.text}>Monthly</Text>
+          </View>
+          <View style={styles.chip}>
+            <Text style={styles.text}>Yearly</Text>
+          </View>
+        </View>
+        <View>
+          <RNChart />
+        </View>
         <View style={styles.boxContainer}>
           <View style={styles.salesBox}>
             <Sales style={styles.icon} />
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: 10,
     marginHorizontal: 24,
   },
   logo: {
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingVertical: 40,
+    paddingVertical: 30,
     marginHorizontal: 30,
   },
   labelChip: {
@@ -108,13 +110,12 @@ const styles = StyleSheet.create({
   boxContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 265,
+    marginVertical: 20,
     paddingHorizontal: 30,
   },
   secondBoxContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
     paddingHorizontal: 30,
   },
   box: {

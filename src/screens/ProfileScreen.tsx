@@ -6,7 +6,7 @@ import {Back, Exit, Forward, Lock} from '../assets/icons/svgs';
 
 const ProfileScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1,backgroundColor:'#FFFFFF'}}>
       <View style={styles.row}>
         <Text style={styles.text}>Profile</Text>
         <Image source={APP_LOGO} style={styles.logo} />
@@ -15,7 +15,7 @@ const ProfileScreen = () => {
         <View style={styles.otherRound}>
           <Text style={styles.innerText}> AZ </Text>
         </View>
-        <View style={{marginLeft: 20, width: '57%'}}>
+        <View style={{width: '57%'}}>
           <Text style={styles.particpantName}>Almayra Zamzamy </Text>
           <Text style={styles.itemLastMessage}>
             kitchen architecture project
@@ -23,14 +23,14 @@ const ProfileScreen = () => {
         </View>
       </View>
       <View style={styles.firstContainer}>
-        <Lock style={styles.forwardArrow} />
+        <Lock />
         <View style={styles.textContainer}>
           <Text style={styles.labels}> Change Password </Text>
         </View>
-        <Forward style={styles.arrow} />
+        <Forward />
       </View>
       <View style={styles.firstContainer}>
-        <Exit style={styles.forwardArrow} />
+        <Exit />
         <View style={styles.textContainer}>
           <Text style={styles.labels}> Log Out </Text>
         </View>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 30,
+    marginVertical: 30,
   },
   text: {
     fontSize: 18,
@@ -61,8 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 15,
-    marginLeft: 10,
+    paddingHorizontal: 25,
     paddingTop: 5,
   },
   otherRound: {
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 20,
+    marginHorizontal: 20,
   },
   particpantName: {
     fontSize: 14,
@@ -96,28 +95,16 @@ const styles = StyleSheet.create({
   labels: {
     fontSize: 14,
     color: '#000E08',
-    marginLeft: 24,
-    marginTop: 30,
-  },
-  forwardArrow: {
-    marginTop: 30,
-    height: 24,
-    width: 24,
+    paddingHorizontal: 15,
   },
   firstContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginLeft: 20,
+    marginHorizontal: 20,
+    marginVertical: 10,
   },
   textContainer: {
     flex: 1,
-    marginHorizontal: -10,
-  },
-  arrow: {
-    marginTop: 30,
-    height: 24,
-    width: 24,
-    bottom: -5,
   },
 });

@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
-import {NavigationContainer} from '@react-navigation/native';
+import {Provider} from 'react-redux';
 
-import Tabs from './src/navigation/tabs';
-import { Provider } from 'react-redux';
-import { store } from './src/store';
-
+import {store} from './src/store';
+import RootNavigator from './src/navigation';
 
 const App = () => {
   useEffect(() => {
@@ -16,9 +14,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-    <NavigationContainer>
-      <Tabs />
-    </NavigationContainer>
+      <RootNavigator />
     </Provider>
   );
 };

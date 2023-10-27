@@ -1,18 +1,33 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-
-import DashboardScreen from '../screens/DashboardScreen';
-import {TabBarStackParamList} from '../types/navigation/appTypes';
-import ChatScreen from '../screens/ChatScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import ProjectScreen from '../screens/ProjectScreen';
-import {Chat, Home, Profile, Projects} from '../assets/icons/svgs';
-import HomeScreen from '../screens/ProjectScreen';
+import DashboardScreen from '../../screens/DashboardScreen';
+import {
+  TabBarStackParamList,
+  RootStackParamList,
+} from '../../types/navigation/appTypes';
+import ChatScreen from '../../screens/ChatScreen';
+import ProfileScreen from '../../screens/ProfileScreen';
+import {Chat, Home, Profile, Projects} from '../../assets/icons/svgs';
+import HomeScreen from '../../screens/ProjectScreen';
 
 const Tab = createBottomTabNavigator<TabBarStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const Tabs = () => {
+const AppRoutes = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Root"
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen component={TabBar} name="Root" />
+    </Stack.Navigator>
+  );
+};
+
+const TabBar = () => {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -66,4 +81,4 @@ const Tabs = () => {
   );
 };
 
-export default Tabs;
+export default AppRoutes;
