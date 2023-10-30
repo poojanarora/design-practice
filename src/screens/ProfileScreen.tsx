@@ -1,21 +1,33 @@
 import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  Image,
+  StatusBar,
+} from 'react-native';
 
 import {APP_LOGO} from '../assets/images';
-import {Back, Exit, Forward, Lock} from '../assets/icons/svgs';
+import {Exit, Forward, Lock} from '../assets/icons/svgs';
 
 const ProfileScreen = () => {
   return (
-    <SafeAreaView style={{flex:1,backgroundColor:'#FFFFFF'}}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="#FFFFFF"
+        networkActivityIndicatorVisible={true}
+      />
       <View style={styles.row}>
         <Text style={styles.text}>Profile</Text>
         <Image source={APP_LOGO} style={styles.logo} />
       </View>
-      <View style={styles.container}>
+      <View style={styles.profileContainer}>
         <View style={styles.otherRound}>
           <Text style={styles.innerText}> AZ </Text>
         </View>
-        <View style={{width: '57%'}}>
+        <View>
           <Text style={styles.particpantName}>Almayra Zamzamy </Text>
           <Text style={styles.itemLastMessage}>
             kitchen architecture project
@@ -43,6 +55,10 @@ export default ProfileScreen;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  profileContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 30,
@@ -68,7 +84,7 @@ const styles = StyleSheet.create({
     height: 49.1,
     width: 50,
     borderRadius: 25,
-    backgroundColor: 'blue',
+    backgroundColor: '#3068F9',
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 20,
@@ -78,9 +94,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Mulish-Regular',
   },
   innerText: {
-    position: 'absolute',
     alignSelf: 'center',
-    color: 'white',
+    color: '#FFFFFF',
     fontSize: 14,
     fontFamily: 'Mulish-Regular',
     fontWeight: '700',

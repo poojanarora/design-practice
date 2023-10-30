@@ -1,63 +1,90 @@
 import React from 'react';
 import {
-  View,
-  Text,
   StyleSheet,
-  Image,
-  ScrollView,
+  Text,
+  View,
+  TouchableOpacity,
+  Pressable,
+  FlatList,
   SafeAreaView,
+  Dimensions,
+  StatusBar,
 } from 'react-native';
 
-import {Plus, Profit, Project, Sales, Save} from '../assets/icons/svgs';
-import {APP_LOGO} from '../assets/images';
-import RNChart from '../assets/components/PieChart';
+import {Back, Forward} from '../assets/icons/svgs';
+import ParticpantsData from './Particpantdata';
+const screenHeight = Dimensions.get('screen').height;
+
 const ProjectScreen = () => {
-  return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#FFFFFF'}}>
-      <View style={styles.container}>
-        <Image source={APP_LOGO} style={styles.logo} />
-        <Plus style={styles.plus} />
+  const ParticipantCard = ({item}: any) => {
+    return (
+      <View
+        style={{
+          flexDirection: 'row',
+        }}>
+        <View style={styles.participantRound}>
+          <Text style={styles.innerText}> PA </Text>
+        </View>
+        <View style={{marginLeft: 10}}>
+          <Text style={styles.particpantName}>{item.name}</Text>
+          <Text style={styles.particpantMail}>{item.last_message}</Text>
+        </View>
       </View>
-      <ScrollView>
-        <View style={styles.chipContainer}>
-          <View style={styles.labelChip}>
-            <Text style={styles.labelText}>Weekly</Text>
+    );
+  };
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="#F2F7FB"
+        networkActivityIndicatorVisible={true}
+      />
+      <Pressable style={styles.arrow}>
+        <Back />
+      </Pressable>
+      <View style={styles.firstContainer}>
+        <View style={styles.round}>
+          <Text style={styles.innerroundText}> UK </Text>
+        </View>
+        <View style={{flex: 1}}>
+          <Text style={styles.itemName}>kitchen architecture project </Text>
+          <Text style={styles.subItemName}>(Bathroom)</Text>
+          <Text style={styles.itemLastMessage}>
+            Created on 13 July 2023, 12:00
+          </Text>
+          <Text style={styles.itemLastMessage}>
+            Profit Percentage
+            <Text style={styles.percentText}> : 20% </Text>
+          </Text>
+        </View>
+      </View>
+      <View style={styles.secondContainer}>
+        <View style={styles.header}>
+          <Text style={styles.labels}> Media, Links and Docs </Text>
+          <Forward style={styles.forwardarrow} />
+        </View>
+        <Text style={styles.participantlabel}> Participants </Text>
+        <View style={styles.supportContainer}>
+          <View style={styles.otherRound}>
+            <Text style={styles.innerText}> UK </Text>
           </View>
-          <View style={styles.chip}>
-            <Text style={styles.text}>Monthly</Text>
-          </View>
-          <View style={styles.chip}>
-            <Text style={styles.text}>Yearly</Text>
+          <View style={{marginLeft: 10, flex: 1}}>
+            <Text style={styles.particpantName}>Wevisu Support </Text>
           </View>
         </View>
-        <View>
-          <RNChart />
+        <View style={styles.list}>
+          <FlatList
+            scrollEnabled={false}
+            data={ParticpantsData}
+            renderItem={({item}) => <ParticipantCard item={item} />}
+          />
         </View>
-        <View style={styles.boxContainer}>
-          <View style={styles.salesBox}>
-            <Sales style={styles.icon} />
-            <Text style={styles.innerLabelText}>Total Sales</Text>
-            <Text style={styles.percentText}> 48%</Text>
-          </View>
-          <View style={styles.profitBox}>
-            <Profit style={styles.icon} />
-            <Text style={styles.innerLabelText}>Total Profit</Text>
-            <Text style={styles.percentText}> $1,553</Text>
-          </View>
-        </View>
-        <View style={styles.secondBoxContainer}>
-          <View style={styles.saveBox}>
-            <Save style={styles.icon} />
-            <Text style={styles.innerLabelText}>Average Saves</Text>
-            <Text style={styles.percentText}> 48%</Text>
-          </View>
-          <View style={styles.projectBox}>
-            <Project style={styles.icon} />
-            <Text style={styles.innerLabelText}>No of Projects</Text>
-            <Text style={styles.percentText}> 48%</Text>
-          </View>
-        </View>
-      </ScrollView>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Add Participants</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -67,111 +94,149 @@ export default ProjectScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#F2F7FB',
+  },
+  firstContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    marginVertical: 30,
+  },
+  round: {
+    height: 86,
+    width: 86,
+    borderRadius: 43,
+    backgroundColor: '#3068F9',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 10,
     marginHorizontal: 24,
   },
-  logo: {
-    height: 32,
-    width: 135,
+  innerText: {
+    fontFamily: 'Mulish-Regular',
+    fontWeight: '700',
+    alignSelf: 'center',
+    color: '#FFFFFF',
+    fontSize: 14,
   },
-  plus: {
-    height: 24,
-    width: 24,
-  },
-  chipContainer: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingVertical: 30,
-    marginHorizontal: 30,
-  },
-  labelChip: {
-    backgroundColor: '#10B78B',
-    borderRadius: 17,
-    width: 82,
-    height: 34,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  chip: {
-    borderRadius: 20,
-  },
-  text: {
-    color: '#BCBCBC',
-    fontWeight: 'bold',
-  },
-  labelText: {
+  innerroundText: {
+    alignSelf: 'center',
     color: 'white',
+    fontSize: 20,
+    fontFamily: 'Mulish-Regular',
+    fontWeight: '700',
+  },
+  list: {
+    marginHorizontal: 20,
+  },
+  arrow: {
+    marginHorizontal: 24,
+    marginTop: 20,
+  },
+  forwardarrow: {
+    marginHorizontal: 24,
+    alignSelf: 'center',
+  },
+  itemName: {
+    fontSize: 16,
+  },
+  particpantName: {
+    fontSize: 14,
     fontFamily: 'Mulish-Regular',
   },
-  boxContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 20,
-    paddingHorizontal: 30,
+  labels: {
+    fontSize: 14,
+    color: '#000E08',
+    marginLeft: 24,
+    fontFamily: 'Mulish-Regular',
+    fontWeight: '700',
   },
-  secondBoxContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 30,
+  participantlabel: {
+    fontSize: 14,
+    color: '#000E08',
+    marginLeft: 24,
+    fontFamily: 'Mulish-Regular',
+    fontWeight: '700',
   },
-  box: {
-    width: 154,
-    height: 127,
-    backgroundColor: 'lightblue',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  salesBox: {
-    width: 154,
-    height: 127,
-    backgroundColor: 'yellow',
-    borderRadius: 10,
-  },
-  profitBox: {
-    width: 154,
-    height: 127,
-    backgroundColor: 'lightblue',
-    borderRadius: 10,
-  },
-  saveBox: {
-    width: 154,
-    height: 127,
-    backgroundColor: 'lightgreen',
-    borderRadius: 10,
-  },
-  projectBox: {
-    width: 154,
-    height: 127,
-    backgroundColor: 'orange',
-    borderRadius: 10,
-  },
-  boxText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'black',
-  },
-  innerLabelText: {
+  subItemName: {
     fontSize: 12,
-    color: 'black',
-    marginTop: 10,
-    marginLeft: 24,
+    color: '#3068F9',
+    marginTop: 5,
+    fontFamily: 'Mulish-Regular',
   },
-  icon: {
-    height: 34,
-    width: 34,
+  itemLastMessage: {
+    fontSize: 12,
+    color: '#111',
     marginTop: 10,
-    marginLeft: 24,
+    opacity: 0.6,
+    fontFamily: 'Mulish-Regular',
+  },
+  particpantMail: {
+    fontSize: 12,
+    color: '#111',
+    marginTop: 8,
+    opacity: 0.6,
+    fontFamily: 'Mulish-Regular',
   },
   percentText: {
-    fontWeight: 'bold',
-    color: 'black',
-    fontSize: 18,
-    marginTop: 20,
+    fontSize: 12,
+    color: '#10B78B',
+    fontFamily: 'Mulish-Regular',
+  },
+  participantRound: {
+    height: 49.1,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: '#3068F9',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  supportContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  otherRound: {
+    height: 49.1,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: '#10B78B',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginLeft: 20,
+  },
+  buttonContainer: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    height: screenHeight,
+    justifyContent: 'flex-end',
+  },
+  button: {
+    width: 327,
+    height: 45,
+    backgroundColor: '#10B78B',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
+    borderRadius: 15,
+    marginVertical: 20,
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontFamily: 'Mulish-Regular',
+    fontWeight: '700',
+  },
+  secondContainer: {
+    flexDirection: 'column',
+    backgroundColor: '#FFFFFF',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    overflow: 'hidden',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 30,
   },
 });

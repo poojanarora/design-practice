@@ -1,84 +1,64 @@
 import React from 'react';
 import {
-  StyleSheet,
-  Text,
   View,
-  TouchableOpacity,
-  Pressable,
+  Text,
+  StyleSheet,
+  Image,
+  TextInput,
   FlatList,
-  ScrollView,
   SafeAreaView,
-  Dimensions,
+  StatusBar,
 } from 'react-native';
 
-import {Back, Forward} from '../assets/icons/svgs';
-import ParticpantsData from './Particpantdata';
-const screenHeight = Dimensions.get('screen').height;
+import {APP_LOGO} from '../assets/images';
+import {Plus, Search} from '../assets/icons/svgs';
+import data from './data';
 
 const ChatScreen = () => {
-  const ParticipantCard = ({item}: any) => {
+  const ChatCard = ({item}: any) => {
     return (
-      <View
-        style={{
-          flexDirection: 'row',
-        }}>
-        <View style={styles.participantRound}>
-          <Text style={styles.innerText}> PA </Text>
+      <View style={styles.cardContainer}>
+        <View style={styles.round}>
+          <Text style={styles.innerText}> UK </Text>
         </View>
-        <View style={{marginLeft: 10}}>
-          <Text style={styles.particpantName}>{item.name}</Text>
-          <Text style={styles.particpantMail}>{item.last_message}</Text>
+        <View style={styles.chatDetails}>
+          <Text style={styles.itemName}>{item.name}</Text>
+          <Text style={styles.itemLastMessage}>{item.last_message}</Text>
+        </View>
+        <View style={styles.timeContainer}>
+          <Text style={styles.time}> {item.time}</Text>
+          <View style={styles.circleContainer}>
+            <Text style={styles.circleText}> 1 </Text>
+          </View>
         </View>
       </View>
     );
   };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable style={styles.arrow}>
-        <Back />
-      </Pressable>
-      <View style={styles.firstContainer}>
-        <View style={styles.round}>
-          <Text style={styles.innerroundText}> UK </Text>
-        </View>
-        <View style={{width: '57%'}}>
-          <Text style={styles.itemName}>kitchen architecture project </Text>
-          <Text style={styles.subItemName}>(Bathroom)</Text>
-          <Text style={styles.itemLastMessage}>
-            Created on 13 July 2023, 12:00
-          </Text>
-          <Text style={styles.itemLastMessage}>
-            Profit Percentage
-            <Text style={styles.batteryPercent}> : 20% </Text>
-          </Text>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="#FFFFFF"
+        networkActivityIndicatorVisible={true}
+      />
+      <View style={styles.row}>
+        <Text style={styles.text}>Chat</Text>
+        <Image source={APP_LOGO} style={styles.logo} />
+        <Plus />
+      </View>
+      <View style={styles.searchContainer}>
+        <View style={styles.searchBar}>
+          <Search />
+          <TextInput style={styles.input} placeholder="Search" />
         </View>
       </View>
-      <View style={styles.secondContainer}>
-        <View style={styles.header}>
-          <Text style={styles.labels}> Media, Links and Docs </Text>
-          <Forward style={styles.forwardarrow} />
-        </View>
-        <Text style={styles.participantlabel}> Participants </Text>
-        <View style={styles.supportContainer}>
-          <View style={styles.otherRound}>
-            <Text style={styles.innerText}> UK </Text>
-          </View>
-          <View style={{marginLeft: 10, width: '57%'}}>
-            <Text style={styles.particpantName}>Wevisu Support </Text>
-          </View>
-        </View>
-        <View style={styles.list}>
-          <FlatList
-            scrollEnabled={false}
-            data={ParticpantsData}
-            renderItem={({item}) => <ParticipantCard item={item} />}
-          />
-        </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Add Participants</Text>
-        </TouchableOpacity>
+      <View style={styles.list}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={data}
+          renderItem={({item}) => <ChatCard item={item} />}
+        />
       </View>
     </SafeAreaView>
   );
@@ -89,151 +69,119 @@ export default ChatScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#F2F7FB',
+    backgroundColor: '#FFFFFF',
   },
-  firstContainer: {
-    flexDirection: 'row',
-    marginVertical: 30,
-  },
-  round: {
-    height: 86,
-    width: 86,
-    borderRadius: 43,
-    backgroundColor: 'blue',
+  searchContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 24,
+    flexDirection: 'row',
+    marginHorizontal: 20,
   },
-  innerText: {
+  row: {
+    paddingHorizontal: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  text: {
     fontFamily: 'Mulish-Regular',
-    fontWeight: '700',
-    position: 'absolute',
+    fontSize: 18,
+  },
+  logo: {
+    height: 20,
+    width: 70,
+    resizeMode: 'contain',
+  },
+  bar: {
+    height: 20,
+  },
+  searchBar: {
+    paddingHorizontal: 15,
+    marginVertical: 15,
+    flexDirection: 'row',
+    backgroundColor: '#F7F7FC',
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  circleContainer: {
+    height: 22,
+    width: 22,
+    borderRadius: 40,
+    backgroundColor: '#10B68A',
+    marginTop: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  timeContainer: {
+    alignItems: 'flex-end',
+    width: '20%',
+    marginVertical: 7,
     alignSelf: 'center',
-    color: 'white',
+  },
+  input: {
+    fontFamily: 'Mulish-Regular',
     fontSize: 14,
+    marginLeft: 10,
+    flex: 1,
+    fontWeight: '600',
   },
-  innerroundText: {
-    position: 'absolute',
-    alignSelf: 'center',
-    color: 'white',
-    fontSize: 20,
+  round: {
+    height: 56,
+    width: 56,
+    borderRadius: 30,
+    backgroundColor: '#3068F9',
+    marginBottom: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  chatDetails: {
+    marginLeft: 15,
+    alignItems: 'flex-start',
+    marginVertical: 7,
+    flex: 1,
+  },
+  itemBlock: {
+    flexDirection: 'row',
+    paddingBottom: 5,
+    marginBottom: 20,
+  },
+  itemName: {
     fontFamily: 'Mulish-Regular',
-    fontWeight: '700',
+    fontSize: 16,
+  },
+  itemLastMessage: {
+    fontFamily: 'Mulish-Regular',
+    fontSize: 12,
+    marginTop: 10,
+    color: '#ADB5BD',
+    fontWeight: '400',
   },
   list: {
     marginHorizontal: 20,
   },
-  arrow: {
-    marginHorizontal: 24,
-    marginTop: 20,
+  time: {
+    fontFamily: 'Mulish-Regular',
+    fontSize: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  forwardarrow: {
-    marginHorizontal: 24,
+  innerText: {
     alignSelf: 'center',
-  },
-  itemName: {
-    fontSize: 16,
-  },
-  particpantName: {
+    justifyContent: 'center',
+    color: '#FFFFFF',
     fontSize: 14,
-    fontFamily: 'Mulish-Regular',
-  },
-  labels: {
-    fontSize: 14,
-    color: '#000E08',
-    marginLeft: 24,
     fontFamily: 'Mulish-Regular',
     fontWeight: '700',
   },
-  participantlabel: {
-    fontSize: 14,
-    color: '#000E08',
-    marginLeft: 24,
+  circleText: {
     fontFamily: 'Mulish-Regular',
-    fontWeight: '700',
-  },
-  subItemName: {
     fontSize: 12,
-    color: 'blue',
-    marginTop: 5,
-    fontFamily: 'Mulish-Regular',
-  },
-  itemLastMessage: {
-    fontSize: 12,
-    color: '#111',
-    marginTop: 10,
-    opacity: 0.6,
-    fontFamily: 'Mulish-Regular',
-  },
-  particpantMail: {
-    fontSize: 12,
-    color: '#111',
-    marginTop: 8,
-    opacity: 0.6,
-    fontFamily: 'Mulish-Regular',
-  },
-  batteryPercent: {
-    fontSize: 12,
-    color: 'green',
-    fontFamily: 'Mulish-Regular',
-  },
-  participantRound: {
-    height: 49.1,
-    width: 50,
-    borderRadius: 25,
-    backgroundColor: 'blue',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  supportContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-  otherRound: {
-    height: 49.1,
-    width: 50,
-    borderRadius: 25,
-    backgroundColor: '#10B78B',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 20,
-  },
-  buttonContainer: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    height: screenHeight,
-    justifyContent: 'flex-end',
-  },
-  button: {
-    width: 327,
-    height: 45,
-    backgroundColor: '#10B78B',
-    justifyContent: 'center',
     alignSelf: 'center',
-    alignItems: 'center',
-    borderRadius: 15,
-    marginVertical: 20,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontFamily: 'Mulish-Regular',
-    fontWeight: '700',
-  },
-  secondContainer: {
-    flexDirection: 'column',
-    backgroundColor: 'white',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    overflow: 'hidden',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 30,
+    color: '#FFFFFF',
   },
 });

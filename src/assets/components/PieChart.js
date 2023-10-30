@@ -54,7 +54,6 @@ export default class RNChart extends Component {
         return processColor('#ABCDFF'); // Background color for 'Pecel' and 'Magelangan' when value is 10
       }
 
-      // Default color for other values
       return processColor('#C6DCFF');
     });
 

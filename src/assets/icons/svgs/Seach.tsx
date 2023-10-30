@@ -3,22 +3,13 @@ import Svg, {SvgProps, Path} from 'react-native-svg';
 const SvgComponent = (props: SvgProps) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={30}
-    height={36}
-    viewBox="0 0 256 256"
+    width={24}
+    height={24}
+    fill="none"
     {...props}>
     <Path
-      fill="#787474"
-      strokeMiterlimit={10}
-      d="M13 3C7.489 3 3 7.489 3 13s4.489 10 10 10a9.947 9.947 0 0 0 6.322-2.264l5.971 5.971a1 1 0 1 0 1.414-1.414l-5.97-5.97A9.947 9.947 0 0 0 23 13c0-5.511-4.489-10-10-10zm0 2c4.43 0 8 3.57 8 8s-3.57 8-8 8-8-3.57-8-8 3.57-8 8-8z"
-      fontFamily="none"
-      fontSize="none"
-      fontWeight="none"
-      style={{
-        mixBlendMode: 'normal',
-      }}
-      textAnchor="none"
-      transform="scale(8.53333)"
+      fill="#ADB5BD"
+      d="m18.677 19.607-5.715-5.716a6 6 0 0 1-7.719-9.133 6 6 0 0 1 9.134 7.718l5.715 5.716-1.414 1.414-.001.001ZM9.485 5a4 4 0 1 0 2.917 1.264l.605.6-.682-.68-.012-.012A3.972 3.972 0 0 0 9.485 5Z"
     />
   </Svg>
 );
